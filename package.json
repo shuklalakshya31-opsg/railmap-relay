@@ -2,6 +2,7 @@
   "name": "railmap-live-relay",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "railkit": "^4.0.1"
   }
