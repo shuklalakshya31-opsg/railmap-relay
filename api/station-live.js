@@ -1,7 +1,3 @@
-import { configure, liveAtStation } from 'railkit';
-
-configure(process.env.RAILKIT_API_KEY);
-
 export default async function handler(req, res) {
   // Open CORS so a locally-opened HTML file (file://) or any phone browser can call this.
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -19,6 +15,9 @@ export default async function handler(req, res) {
   }
 
   try {
+    const { configure, liveAtStation } = await import('railkit');
+    configure(process.env.RAILKIT_API_KEY);
+
     const windowHours = hours ? parseInt(hours, 10) : 2;
     const result = await liveAtStation(String(code).toUpperCase(), windowHours);
     res.status(200).json(result);
